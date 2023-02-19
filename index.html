@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="hero">
+			<div class="container">
+				<div class="indicator">
+					<span class="previousBtn" id="previousBtn"
+						><i class="bx bxs-chevron-left icon"></i
+					></span>
+					<span class="nextBtn" id="nextBtn"
+						><i class="bx bxs-chevron-right icon"></i
+					></span>
+				</div>
+				<div class="swiper">
+					<div class="slide active">Nigeria GLO</div>
+					<div class="slide">Nigeria MTN</div>
+					<div class="slide">Nigeria Airtel</div>
+					<div class="slide">Nigeria 9mobile</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var previousBtn = document.getElementById("previousBtn");
+			var nextBtn = document.getElementById("nextBtn");
+			const slide = document.querySelectorAll(".slide");
+
+			let counter = 1;
+			previousBtn.addEventListener(
+				"click",
+				() => {
+					plusSlides(-1);
+					console.log("Previous Btn");
+				},
+				false
+			);
+			nextBtn.addEventListener("click", () => {
+				plusSlides(1);
+				console.log("Next Button");
+			});
+
+			function plusSlides(n) {
+				// counter(1) + (-1)
+				counter += n;
+				slidefun(counter);
+			}
+
+			function slidefun(n) {
+				let i;
+				for (i = 0; i < slide.length; i++) {
+					slide[i].style.display = "none";
+				}
+
+				//Handle Circular Rotation
+				if (n > slide.length) {
+					counter = 1;
+				}
+				if (n < 1) {
+					counter = slide.length;
+				}
+
+				slide[counter - 1].style.display = "block";
+			}
+		</script>
+	</body>
+</html>
